@@ -13,6 +13,7 @@ public interface UserInfoMapper {
     @Select("select * from userInfo where userAge=#{userAge}")
     UserInfo findBookById(@Param("userAge") Integer userAge);
 
+
     List<UserInfo> selectUserInfoList();
 
 

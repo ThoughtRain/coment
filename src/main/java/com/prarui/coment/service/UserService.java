@@ -12,8 +12,8 @@ public class UserService {
     @Autowired
     UserInfoMapper userInfoMapper;
 
-    public UserInfo findBookById() {
-        return userInfoMapper.findBookById(12);
+    public UserInfo findBookById(Integer userAge) {
+        return userInfoMapper.findBookById(userAge);
     }
 
     public List<UserInfo> selectUserInfoList() {
