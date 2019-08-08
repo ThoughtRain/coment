@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class HelloAspect {
     @Before("execution(public * com.prarui.coment.controller.Hello.sayhello())")
     public void before(){
-        System.out.print("------------------hello 方法执行前-------------------");
+        System.out.print("------------------hello 方法执行前------------------- op");
     }
 
     @After("execution(public * com.prarui.coment.controller.Hello.sayhello())")
