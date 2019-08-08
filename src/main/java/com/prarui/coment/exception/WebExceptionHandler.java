@@ -47,7 +47,10 @@ public class WebExceptionHandler {
     @ExceptionHandler
     public String ageDeleteException(AgeDeleteException e) {
         log.error("删除小于 18 岁的用户: ", e);
-        return generateErrorInfo(-1, "不允许删除小于 18 岁的用户!");
+        if(e.getMessage()==null){
+            return generateErrorInfo(-1, "不允许删除小于 18 岁的用户!");
+        }
+        return generateErrorInfo(-1, e.getMessage());
     }
 
     @ExceptionHandler
