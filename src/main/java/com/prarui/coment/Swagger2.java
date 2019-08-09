@@ -28,10 +28,13 @@ public class Swagger2 {
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder()
                 .title("Spring Boot中使用Swagger2构建RESTful APIs")  // 文档标题
-                .description("zw swagger2文档")  // 文档描述
+                .description("测试 swagger2文档")  // 文档描述
                 .termsOfServiceUrl("http://127.0.0.1:9090/")     // 服务路径
-                .contact("zww")
+                .contact("prarui")
                 .version("1.0")
                 .build();
     }
+    /**
+     * http://127.0.0.1:8080/swagger-ui.html
+     */
 }
