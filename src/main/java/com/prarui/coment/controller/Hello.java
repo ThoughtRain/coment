@@ -57,7 +57,7 @@ public class Hello {
         } else {
             if (!userForBase.getUserPassWord().equals(user.getUserPassWord())) {
                 map.put("message", "登录失败,密码错误");
-                return new BaseRequest<Object>(200, "成功", map);
+                return new BaseRequest<Object>(200, "登录失败,密码错误", null);
             } else {
                 String token = tokenService.getToken(userForBase);
                 map.put("token", token);
