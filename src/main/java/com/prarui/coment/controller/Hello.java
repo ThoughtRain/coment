@@ -7,6 +7,7 @@ import com.prarui.coment.bean.UserInfo;
 import com.prarui.coment.exception.AgeDeleteException;
 import com.prarui.coment.service.TokenService;
 import com.prarui.coment.service.UserService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ public class Hello {
     private UserService userService;
     private Gson gson = new Gson();
 
-//    @RequestMapping(value = "/hello/{userAge}", method = RequestMethod.GET)
+    //    @RequestMapping(value = "/hello/{userAge}", method = RequestMethod.GET)
 //    public String sayhello(@PathVariable("userAge") Integer userAge) {
 //        //UserInfo userInfo = userService.findBookById(userAge);
 //        if (userInfo == null) {
@@ -32,12 +33,13 @@ public class Hello {
 //        }
 //        return gson.toJson(new BaseRequest<Object>(200, "成功", userInfo));
 //    }
-
+    @ApiOperation(value = "查询所有用户", notes = "获取全部")
     @RequestMapping(value = "/hello2", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public String sayMap() {
         return gson.toJson(new BaseRequest<Object>(200, "成功", userService.selectUserInfoList()));
     }
 
+    @ApiOperation(value = "查询单个用户", notes = "根据Id获取对象")
     @RequestMapping(value = "/hello3", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public String sayFind() {
         return gson.toJson(new BaseRequest<Object>(200, "成功", userService.findUserById("1")));
@@ -66,9 +68,10 @@ public class Hello {
             }
         }
     }
+
     @UserLoginToken
     @GetMapping("/getMessage")
-    public String getMessage(){
+    public String getMessage() {
         return "你已通过验证";
     }
 
