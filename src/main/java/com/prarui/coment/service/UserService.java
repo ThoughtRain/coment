@@ -19,5 +19,11 @@ public class UserService {
     public List<UserInfo> selectUserInfoList() {
         return userInfoMapper.selectUserInfoList();
     }
+    public UserInfo findByUsername(UserInfo user){
+        return userInfoMapper.findByUsername(user.getUserName());
+    }
+    public UserInfo findUserById(String userId) {
+        return userInfoMapper.findUserById(userId);
+    }
 
 }

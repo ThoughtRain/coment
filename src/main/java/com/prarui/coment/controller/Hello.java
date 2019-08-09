@@ -1,15 +1,16 @@
 package com.prarui.coment.controller;
 
 import com.google.gson.Gson;
+import com.prarui.coment.annotation.UserLoginToken;
 import com.prarui.coment.bean.BaseRequest;
 import com.prarui.coment.bean.UserInfo;
 import com.prarui.coment.exception.AgeDeleteException;
+import com.prarui.coment.service.TokenService;
 import com.prarui.coment.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 @RestController
 public class Hello {
@@ -37,5 +38,38 @@ public class Hello {
         return gson.toJson(new BaseRequest<Object>(200, "成功", userService.selectUserInfoList()));
     }
 
+    @RequestMapping(value = "/hello3", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public String sayFind() {
+        return gson.toJson(new BaseRequest<Object>(200, "成功", userService.findUserById("1")));
+    }
+
+    @Autowired
+    TokenService tokenService;
+
+    //登录
+    @PostMapping("/login")
+    public Object login(@RequestBody UserInfo user) {
+        UserInfo userForBase = userService.findByUsername(user);
+        HashMap<String, Object> map = new HashMap<>();
+        if (userForBase == null) {
+            map.put("message", "登录失败,用户不存在");
+            return new BaseRequest<Object>(200, "成功", map);
+        } else {
+            if (!userForBase.getUserPassWord().equals(user.getUserPassWord())) {
+                map.put("message", "登录失败,密码错误");
+                return new BaseRequest<Object>(200, "成功", map);
+            } else {
+                String token = tokenService.getToken(userForBase);
+                map.put("token", token);
+                map.put("user", userForBase);
+                return new BaseRequest<Object>(200, "成功", map);
+            }
+        }
+    }
+    @UserLoginToken
+    @GetMapping("/getMessage")
+    public String getMessage(){
+        return "你已通过验证";
+    }
 
 }

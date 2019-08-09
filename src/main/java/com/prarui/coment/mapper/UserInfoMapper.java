@@ -16,5 +16,8 @@ public interface UserInfoMapper {
 
     List<UserInfo> selectUserInfoList();
 
+    UserInfo findByUsername(@Param("userName") String username);
+
+    UserInfo findUserById(@Param("id") String Id);
 
 }

@@ -4,10 +4,22 @@
   <resultMap id="BaseResultMap" type="com.prarui.coment.bean.UserInfo">
     <result column="userName" jdbcType="VARCHAR" property="userName" />
     <result column="userAge" jdbcType="INTEGER" property="userAge" />
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="userPassWord" jdbcType="VARCHAR" property="userPassWord" />
   </resultMap>
     <select id="selectUserInfoList" resultMap="BaseResultMap">
     select * from userinfo
   </select>
+  <select id="findByUsername" resultMap="BaseResultMap">
+      SELECT * FROM userinfo
+      where
+      userName=#{userName}
+    </select>
+  <select id="findUserById" resultMap="BaseResultMap">
+        SELECT * FROM userinfo
+      where
+      id=#{id}
+    </select>
 <!--  <select id="selectUserInfoList">-->
 <!--    select * from userInfro-->
 <!--  </select>-->
