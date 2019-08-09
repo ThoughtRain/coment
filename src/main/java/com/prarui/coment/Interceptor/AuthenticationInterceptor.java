@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
+import java.util.logging.Logger;
 
 
 /**
@@ -25,7 +26,7 @@ import java.lang.reflect.Method;
  */
 public class AuthenticationInterceptor implements HandlerInterceptor {
     @Autowired
-    UserService userService;
+    private UserService userService;
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {
         String token = httpServletRequest.getHeader("token");// 从 http 请求头中取出 token
@@ -47,6 +48,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             UserLoginToken userLoginToken = method.getAnnotation(UserLoginToken.class);
             if (userLoginToken.required()) {
                 // 执行认证
+                //Logger.getLogger("xxx",token);
                 if (token == null) {
                     throw new RuntimeException("无token，请重新登录");
                 }

@@ -58,6 +58,11 @@ public class WebExceptionHandler {
         log.error("发生了未知异常: ", e);
         return generateErrorInfo(-99, "系统故障, 请稍后再试!");
     }
+    @ExceptionHandler
+    public String unknownException(RuntimeException e) {
+        log.error("token问题: ", e);
+        return generateErrorInfo(-1, e.getMessage());
+    }
 
 
     /**

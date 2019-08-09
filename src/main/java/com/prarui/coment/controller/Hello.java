@@ -21,17 +21,17 @@ public class Hello {
     private UserService userService;
     private Gson gson = new Gson();
 
-    @RequestMapping(value = "/hello/{userAge}", method = RequestMethod.GET)
-    public String sayhello(@PathVariable("userAge") Integer userAge) {
-        UserInfo userInfo = userService.findBookById(userAge);
-        if (userInfo == null) {
-            throw new AgeDeleteException("我的额");
-        }
-        if (userInfo.getUserAge() < 18) {
-            throw new AgeDeleteException();
-        }
-        return gson.toJson(new BaseRequest<Object>(200, "成功", userInfo));
-    }
+//    @RequestMapping(value = "/hello/{userAge}", method = RequestMethod.GET)
+//    public String sayhello(@PathVariable("userAge") Integer userAge) {
+//        //UserInfo userInfo = userService.findBookById(userAge);
+//        if (userInfo == null) {
+//            throw new AgeDeleteException("我的额");
+//        }
+//        if (userInfo.getUserAge() < 18) {
+//            throw new AgeDeleteException();
+//        }
+//        return gson.toJson(new BaseRequest<Object>(200, "成功", userInfo));
+//    }
 
     @RequestMapping(value = "/hello2", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public String sayMap() {

@@ -11,13 +11,13 @@ import java.util.List;
 public interface UserInfoMapper {
 
     @Select("select * from userInfo where userAge=#{userAge}")
-    UserInfo findBookById(@Param("userAge") Integer userAge);
+    public  UserInfo findBookById(@Param("userAge") Integer userAge);
 
 
-    List<UserInfo> selectUserInfoList();
+    public List<UserInfo> selectUserInfoList();
 
-    UserInfo findByUsername(@Param("userName") String username);
+    public UserInfo findByUsername(@Param("userName") String username);
 
-    UserInfo findUserById(@Param("id") String Id);
+    public UserInfo findUserById(@Param("id") String id);
 
 }
