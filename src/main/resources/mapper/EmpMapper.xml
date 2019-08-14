@@ -6,17 +6,17 @@
 
     <!--一对一查询，方法1，通过内联接-->
     <select id="getEmpById_1" resultMap="empMap_1" parameterType="int">
- SELECT
- emp.id,
- emp.user_id,
- emp.realname,
- emp.email,
- `user`.username,
- `user`.`password`
- FROM
- emp
- INNER JOIN `user` ON emp.user_id = `user`.id where emp.id=#{id}
- </select>
+        SELECT
+        emp.id,
+        emp.user_id,
+        emp.realname,
+        emp.email,
+        `user`.username,
+        `user`.`password`
+        FROM
+        emp
+        INNER JOIN `user` ON emp.user_id = `user`.id where emp.id=#{id}
+    </select>
 
     <!--员工关联查询结果映射-->
     <resultMap id="empMap_1" type="Emp">
