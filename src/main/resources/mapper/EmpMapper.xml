@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.prarui.coment.mapper.MepMapper">
+
+    <!--一对一查询，方法1，通过内联接-->
+    <select id="getEmpById_1" resultMap="empMap_1" parameterType="int">
+ SELECT
+ emp.id,
+ emp.user_id,
+ emp.realname,
+ emp.email,
+ `user`.username,
+ `user`.`password`
+ FROM
+ emp
+ INNER JOIN `user` ON emp.user_id = `user`.id where emp.id=#{id}
+ </select>
+
+    <!--员工关联查询结果映射-->
+    <resultMap id="empMap_1" type="Emp">
+        <id property="id" column="id"></id>
+        <result property="user_id" column="user_id"></result>
+        <result property="realname" column="realname"></result>
+        <result property="email" column="email"></result>
+        <!--映射关系，指定属性与属性的类型-->
+        <association property="user" javaType="User">
+            <id property="id" column="user_id"></id>
+            <result property="username" column="username"></result>
+            <result property="password" column="password"></result>
+        </association>
+    </resultMap>
+
+</mapper>
