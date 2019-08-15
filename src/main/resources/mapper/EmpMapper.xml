@@ -31,5 +31,18 @@
             <result property="password" column="password"></result>
         </association>
     </resultMap>
+    <!--一对一查询，方法1，通过内联接-->
+    <select id="getMainDate" resultMap="empMap_1">
+        SELECT
+        emp.id,
+        emp.user_id,
+        emp.realname,
+        emp.email,
+        `user`.username,
+        `user`.`password`
+        FROM
+        emp
+        INNER JOIN `user` ON emp.user_id = `user`.id
+    </select>
 
 </mapper>
