@@ -38,6 +38,12 @@ public class Hello {
     public String sayMap() {
         return gson.toJson(new BaseRequest<Object>(200, "成功", userService.selectUserInfoList()));
     }
+    @ApiOperation(value = "test", notes = "获取全部")
+    @RequestMapping(value = "/images", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public String images() {
+
+        return gson.toJson(new BaseRequest<Object>(200, "成功", userService.selectUserInfoList()));
+    }
 
     @ApiOperation(value = "查询单个用户", notes = "根据Id获取对象")
     @RequestMapping(value = "/hello3", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
