@@ -34,4 +34,8 @@ public class BaseRequest<T> {
     public void setData(T data) {
         this.data = data;
     }
+
+    public static void sendJson() {
+
+    }
 }
